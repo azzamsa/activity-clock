@@ -9,7 +9,7 @@ function degToRad(degrees) {
 }
 
 function clockToRad(clock, direction) {
-  var unit = circleDegree / 12;
+  var unit = circleDegree / 24;
   var degree = direction > 0 ? unit * clock : unit * clock - circleDegree;
   return degToRad(degree);
 }
@@ -49,12 +49,19 @@ clockGroup = vis.append("svg:g")
 
 var cubes = [
   // start, inverse flag, end, inverse flag, color
+  [22, -1, 4, 1, '#deb881', 'tidur malam'],
   [4, 1, 5, 1, '#42dee1', 'subuhan'],
   [5, 1, 6, 1, '#ffad87', 'olahraga/cuci'],
   [6, 1, 7, 1, '#eef5b2', 'mandi->makan'],
-  [7, 1, 12, 1, '#6decb9', 'kerja (7->12)'],
-  [12, -1, 1, 1, '#42dee1', 'dzuhuran'],
-  [1, -1, 4, -1, '#6decb9', 'kerja (1->4)'],
+  [7, 1, 12, 1, '#6decb9', 'kerja'],
+  [12, 1, 13, 1, '#42dee1', 'dzuhuran'],
+  [13, 1, 16, 1, '#6decb9', 'kerja'],
+  [16, 1, 17, 1, '#eef5b2', 'pulang kerja'],
+  [17, 1, 18.20, 1, '#42dee1', 'maghriban'],
+  [18.20, 1, 19, 1, '#eef5b2', 'mandi->makan'],
+  [19, 1, 19.20, 1, '#42dee1', 'isyaan'],
+  [19.20, 1, 21, 1, '#9852f9', 'belajar'],
+  [21, 1, 22, 1, '#71a95a', 'family time'],
 ];
 
 var legend = d3.select("#legend");
@@ -85,7 +92,7 @@ for(var i = 0; i < cubes.length; i++) {
   legend.append("text")
     .attr("x", 220)
     .attr("y", svg_cy) //
-    .text(cube[5] + " (" + cube[1] + "->" + cube[2] + ") " )
+    .text(cube[5] + " (" + cube[0] + "->" + cube[2] + ") " )
     .style("font-size", "15px")
     .attr("alignment-baseline","middle");
 }
@@ -94,7 +101,7 @@ for(var i = 0; i < cubes.length; i++) {
 clockGroup.append('g')
   .attr('class', 'ticks')
   .selectAll('path')
-  .data(splitDegrees(12))
+  .data(splitDegrees(24))
   .enter()
   .append('path')
   .attr('d', function(d) {
