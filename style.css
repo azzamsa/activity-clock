@@ -6,3 +6,13 @@ line {
 circle {
   stroke-width: 0;
 }
+
+.container{
+    display: flex;
+}
+.fixed{
+    width: 25px;
+}
+.flex-item{
+    flex-grow: 1;
+}
