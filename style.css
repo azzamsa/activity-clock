@@ -12,7 +12,7 @@ circle {
 }
 
 h1{
- width: 100%; height: auto;
+  width: 100%; height: auto;
 }
 
 .chart{
@@ -32,4 +32,168 @@ h1{
   text-align: center;
   margin-bottom: 0;
   padding-bottom: 0;
+}
+
+.row {
+  background: #f6f6f6;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  padding: 10px;
+}
+.col {
+  float: left;
+  /* width: 60% */
+}
+
+/* form input */
+
+.form-style-9{
+  max-width: 450px;
+  background: #FAFAFA;
+  padding: 30px;
+  margin: 50px auto;
+  box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+  border-radius: 10px;
+  border: 6px solid #305A72;
+}
+body {
+  background-color: #F7FDFF;
+}
+.form-style-9 ul{
+  padding:0;
+  margin:0;
+  list-style:none;
+}
+.form-style-9 ul li{
+  display: block;
+  margin-bottom: 1.25%;
+  /* min-height: 58px;*/
+}
+.form-style-9 ul li  .field-style{
+  box-sizing: border-box;
+  padding: 8px;
+  outline: none;
+  border: 1px solid #B0CFE0;
+}
+.form-style-9 ul li  .field-style:focus{
+  box-shadow: 0 0 5px #B0CFE0;
+  border:1px solid #B0CFE0;
+}
+.form-style-9 ul li .field-split{
+  width: 49%;
+}
+.form-style-9 ul li .field-split25{
+  /* float: left;
+    width: 24%;
+    margin-right: 1.25%;*/
+  height: 40px;
+}
+.form-style-9 ul li .field-full{
+  width: 100%;
+}
+.form-style-9 ul li input.align-left{
+  /*float:left;*/
+}
+.form-style-9 ul li input.align-right{
+  float:right;
+}
+.form-style-9 ul li textarea{
+  width: 100%;
+  height: 100px;
+}
+.form-style-9 ul li input[type="button"],
+.form-style-9 ul li input[type="submit"] {
+  box-shadow: inset 0px 1px 0px 0px #3985B1;
+  background-color: #216288;
+  border: 1px solid #17445E;
+  display: block;
+  cursor: pointer;
+  color: #FFFFFF;
+  padding: 8px 18px;
+  text-decoration: none;
+  font: 12px Arial, Helvetica, sans-serif;
+}
+.submit-div {
+  width: 100%;
+  height: 32px;
+  margin-top: 6%;
+  padding-top: 6%;
+  bottom:0;
+  left:0;
+}
+.submit-btn {
+  padding-top: 5%;
+  display: block;
+  bottom:0;
+  left:0;
+  width: 20%;
+}
+
+.form-style-9 ul li input[type="button"]:hover,
+.form-style-9 ul li input[type="submit"]:hover {
+  background: linear-gradient(to bottom, #2D77A2 5%, #337DA8 100%);
+  background-color: #28739E;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.removeRow{
+  height:auto;
+  width:auto;
+  max-width:12px;
+  max-height:12px;
+}
+
+.header {
+  float:left;
+  width: 100%;
+  margin-right: 1.25%;
+  margin-bottom: .25%;
+}
+label {
+  display: block;
+  text-align: center;
+  font-weight: bold;
+}
+input {
+  width: 100%;
+}
+.container {
+  margin-left: 2%;
+  margin-right: 2%;
+}
+.personal-details {
+  padding-bottom:1.25%;
+}
+ul{
+  list-style: none;
+}
+.personal-details{
+  width:100%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.personal-details > li{
+  padding: 20px;
+  width: 25%;
+  border-top: 1px solid #90C3D4;
+  border-right: 1px solid #90C3D4;
+  border-bottom: 1px solid #90C3D4;
+  border-left: 0px solid #90C3D4;
+}
+.personal-details > li:first-child{
+  padding: 20px;
+  width: 25%;
+  border-left: 1px solid #90C3D4;
+}
+.personal-details > li:nth-child(odd){
+  background-color: #F2FCFF;
+}
+.personal-details > li:nth-child(even){
+  background-color: #FAFEFF;
 }
