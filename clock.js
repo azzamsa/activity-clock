@@ -145,11 +145,3 @@ clockGroup.selectAll('.hour-label')
   .text(function(d){
     return d;
   });
-
-
-
-// credits
-// https://www.d3-graph-gallery.com/graph/custom_legend.html
-// https://stackoverflow.com/questions/38155793/d3-js-pie-chart-clock
-// https://colorhunt.co/palette/156488
-// http://bl.ocks.org/tomgp/6475678
