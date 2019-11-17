@@ -48,57 +48,47 @@ vis = d3.selectAll(".chart")
 clockGroup = vis.append("svg:g")
   .attr("transform", "translate(" + offSetX + "," + offSetY + ")");
 
-// # activities section #editable
-var activities = [
-  // start, inverse flag, end, inverse flag, color
-  [22, -1, 4, 1, '#deb881', 'tidur malam'],
-  [4, 1, 5, 1, '#42dee1', 'subuhan'],
-  [5, 1, 6, 1, '#ffad87', 'olahraga / cuci'],
-  [6, 1, 7, 1, '#eef5b2', 'mandi & makan'],
-  [7, 1, 12, 1, '#6decb9', 'kerja'],
-  [12, 1, 13, 1, '#42dee1', 'dzuhuran'],
-  [13, 1, 16, 1, '#6decb9', 'kerja'],
-  [16, 1, 17, 1, '#eef5b2', 'pulang kerja'],
-  [17, 1, 18.20, 1, '#42dee1', 'maghriban'],
-  [18.20, 1, 19, 1, '#eef5b2', 'mandi & makan'],
-  [19, 1, 19.20, 1, '#42dee1', 'isyaan'],
-  [19.20, 1, 21, 1, '#9852f9', 'belajar'],
-  [21, 1, 22, 1, '#71a95a', 'family time'],
-];
-
 
 var legend = d3.select("#legend");
-
 var svg_cy = 50; // legend y position
 
-for(var i = 0; i < activities.length; i++) {
-  var activity = activities[i];
+function makeClock(activities) {
 
-  var arc = d3.svg.arc()
-      .innerRadius(0)
-      .outerRadius(clockRadius)
-      .startAngle(clockToRad(activity[0], activity[1]))
-      .endAngle(clockToRad(activity[2], activity[3]));
+  for(var i = 0; i < activities.length; i++) {
 
-  // fill clock
-  clockGroup.append('path')
-    .attr('d', arc)
-    .style('fill', activity[4]);
+    var activity = activities[i];
 
-  svg_cy = svg_cy + 30;
+    var startTime = activity[0].value;
+    var endTime = activity[1].value;
+    var activityName = activity[2].value;
+    var colorTime = activity[3].value;
 
-  legend.append("circle")
-    .attr("cx",20)
-    .attr("cy",svg_cy) // inc
-    .attr("r", 10) // circle size
-    .style("fill", activity[4]);
+    var arc = d3.svg.arc()
+        .innerRadius(0)
+        .outerRadius(clockRadius)
+        .startAngle(clockToRad(startTime, 1))
+        .endAngle(clockToRad(endTime, 1));
 
-  legend.append("text")
-    .attr("x", 45)
-    .attr("y", svg_cy + 5) //
-    .text(activity[5] + " (" + activity[0] + "⤳" + activity[2] + ") " )
-    .style("font-size", "20px")
-    .attr("alignment-baseline","middle");
+    // fill clock
+    clockGroup.append('path')
+      .attr('d', arc)
+      .style('fill', colorTime);
+
+    svg_cy = svg_cy + 30;
+
+    legend.append("circle")
+      .attr("cx",20)
+      .attr("cy",svg_cy) // inc
+      .attr("r", 10) // circle size
+      .style("fill", colorTime);
+
+    legend.append("text")
+      .attr("x", 45)
+      .attr("y", svg_cy + 5) //
+      .text(activityName + " (" + startTime + "⤳" + endTime + ") " )
+      .style("font-size", "20px")
+      .attr("alignment-baseline","middle");
+  }
 }
 
 // draw tick
@@ -131,7 +121,7 @@ var hourScale = d3.scale.linear()
 
 // create hour label
 clockGroup.selectAll('.hour-label')
-   // start, max, inc
+// start, max, inc
   .data(d3.range(1, hourLabelRange + 1))
   .enter()
   .append('text')
