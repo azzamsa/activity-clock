@@ -110,7 +110,7 @@ function makeClock(activities) {
     legend.append("text")
       .attr("x", 45)
       .attr("y", svg_cy + 5) //
-      .text(activityName + " (" + startTime + "⤳" + endTime + ") " )
+      .text(activityName + " (" + startTime + "➜" + endTime + ") " )
       .style("font-size", "20px")
       .attr("alignment-baseline","middle");
   }
