@@ -48,7 +48,7 @@ h1{
 /* form input */
 
 .form-style-9{
-  max-width: 450px;
+  max-width: 550px;
   background: #FAFAFA;
   padding: 30px;
   margin: 50px auto;
@@ -140,11 +140,13 @@ ul {
   padding: 0;
   list-style-type: none;
 }
-.removeRow{
+.remove-row{
   height:auto;
   width:auto;
-  max-width:12px;
-  max-height:12px;
+  max-width: 10px;
+  max-height: 120px;
+  margin-left: 10px;
+  text-align: center;
 }
 
 .header {
@@ -157,6 +159,7 @@ label {
   display: block;
   text-align: center;
   font-weight: bold;
+  font-size: 15px;
 }
 input {
   width: 100%;
