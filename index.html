@@ -10,42 +10,42 @@
   <body>
 
     <div class="container">
-      <form class="form-style-9">
+      <form class="form-style-9" id="activities-form" onsubmit="return makeSearch()">
         <ul class="personal-details">
 
-	  <li>
-	    <ul class="column">
-	      <li>
-		<label for="StartTime">Start Time</label>
-		<input id="StartTime" type="text"
-                       name="StartTime" class="field-style field-split25 align-left"
-                       placeholder="Number: 1 to 24" />
-	      </li>
-	    </ul>
-	  </li>
+	<li>
+	  <ul class="column">
+	    <li>
+	      <label for="StartTime">Start Time</label>
+	      <input id="StartTime" type="text"
+                     name="StartTime" class="field-style field-split25 align-left"
+                     placeholder="Number: 1 to 24" />
+	    </li>
+	  </ul>
+	</li>
 
-	  <li>
-	    <ul class="column">
-	      <li>
-		<label for="EndTime">End Time</label>
-		<input id="EndTime" type="text"
-                       name="EndTime"
-                       class="field-style field-split25 align-left"
-                       placeholder="Number: 1 to 24" />
-	      </li>
-	    </ul>
-	  </li>
+	<li>
+	  <ul class="column">
+	    <li>
+	      <label for="EndTime">End Time</label>
+	      <input id="EndTime" type="text"
+                     name="EndTime"
+                     class="field-style field-split25 align-left"
+                     placeholder="Number: 1 to 24" />
+	    </li>
+	  </ul>
+	</li>
 
-	  <li>
-	    <ul class="column">
-	      <li>
-		<label for="ColorTime">Color</label>
-		<input id="ColorTime" type="text" name="ColorTime"
-                       class="field-style field-split25 align-left"
-                       placeholder="Color" />
-	      </li>
-	    </ul>
-	  </li>
+	<li>
+	  <ul class="column">
+	    <li>
+	      <label for="ColorTime">Color</label>
+	      <input id="ColorTime" type="text" name="ColorTime"
+                     class="field-style field-split25 align-left"
+                     placeholder="Color" />
+	    </li>
+	  </ul>
+	</li>
         </ul>
 
         <button type="button" class="add-row">+</button>
@@ -83,9 +83,16 @@
         $( ".form-style-9" ).on("click", ".remove-row", function(){
           $(this).parent().remove();
         });
-      });
-    </script>
 
+      });
+
+      function makeSearch() {
+        var theArray = $('#activities-form').serializeArray();
+        console.log(theArray);
+        console.log('a');
+        return false; // to be able to use console.log
+      }
+    </script>
 
   </body>
 </html>
