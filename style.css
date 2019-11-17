@@ -8,11 +8,28 @@ circle {
 }
 
 .container{
-    display: flex;
+  display: flex;
 }
-.fixed{
-    width: 25px;
+
+h1{
+ width: 100%; height: auto;
 }
-.flex-item{
-    flex-grow: 1;
+
+.chart{
+  /* display: block; */
+  /* margin: auto; */
+  margin-left: 200px;
+}
+
+.legend{
+  /* flex-grow: 1; */
+  /* display: block; */
+  margin-right: 380px;
+  /* margin: auto; */
+}
+
+.title{
+  text-align: center;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }

@@ -1,7 +1,7 @@
 var clockGroup, fields, formatHour, formatMinute, formatSecond, height, offSetX, offSetY, pi, render, scaleHours, scaleSecsMins, vis, width;
 
-var radius = 80;
-var tickLength = 10;
+var clockRadius = 180; // clock SVG Size #editable
+var tickLength = 13;
 var circleDegree = 360;
 
 function degToRad(degrees) {
@@ -33,10 +33,11 @@ function splitDegrees(num) {
 }
 
 
-width = 400;
-height = 200;
-offSetX = 100;
-offSetY = 100;
+// !(use `clockRadius + n` so we only change the value in `clockRadius`)
+width = clockRadius + 290; // clock svg width #editable
+height = clockRadius + 280; // clock svg height #editable
+offSetX = clockRadius + 50; // clock svg offset location #editable
+offSetY = clockRadius + 70; // clock svg offset location #editable
 pi = Math.PI;
 
 vis = d3.selectAll(".chart")
@@ -64,15 +65,17 @@ var cubes = [
   [21, 1, 22, 1, '#71a95a', 'family time'],
 ];
 
+
 var legend = d3.select("#legend");
-var svg_cy = 30;
+
+var svg_cy = 50; // legend y position
 
 for(var i = 0; i < cubes.length; i++) {
   var cube = cubes[i];
 
   var arc = d3.svg.arc()
       .innerRadius(0)
-      .outerRadius(radius)
+      .outerRadius(clockRadius)
       .startAngle(clockToRad(cube[0], cube[1]))
       .endAngle(clockToRad(cube[2], cube[3]));
 
@@ -84,16 +87,16 @@ for(var i = 0; i < cubes.length; i++) {
   svg_cy = svg_cy + 30;
 
   legend.append("circle")
-    .attr("cx",200)
+    .attr("cx",20)
     .attr("cy",svg_cy) // inc
-    .attr("r", 6)
+    .attr("r", 10) // circle size
     .style("fill", cube[4]);
 
   legend.append("text")
-    .attr("x", 220)
-    .attr("y", svg_cy) //
+    .attr("x", 45)
+    .attr("y", svg_cy + 5) //
     .text(cube[5] + " (" + cube[0] + "⤳" + cube[2] + ") " )
-    .style("font-size", "15px")
+    .style("font-size", "20px")
     .attr("alignment-baseline","middle");
 }
 
@@ -106,27 +109,29 @@ clockGroup.append('g')
   .append('path')
   .attr('d', function(d) {
     var coord = {
-      outer: getCoordFromCircle(d, 0, 0, radius),
-      inner: getCoordFromCircle(d, 0, 0, radius - tickLength)
+      outer: getCoordFromCircle(d, 0, 0, clockRadius),
+      inner: getCoordFromCircle(d, 0, 0, clockRadius - tickLength)
     };
     return 'M' + coord.outer[0] + ' ' + coord.outer[1] + 'L' + coord.inner[0] + ' ' + coord.inner[1] + 'Z';
   })
+  .attr('stroke-width', '0.5%')
   .attr('stroke', '#212121');
 
 
-clockRadius = 95;
-hourLabelRadius = clockRadius - 2;
+hourLabelRadius = clockRadius + 20;
 hourLabelYOffset = 7;
 radians = 0.0174532925;
+hourScaleDomain = 22; // 11: for 12 hour / 22: for 24 hour #editable
+hourLabelRange = 24; // 12 / 24 #editable
 
 var hourScale = d3.scale.linear()
     .range([0,330])
-    .domain([0,22]);
+    .domain([0,hourScaleDomain]);
 
-// TODO create hour label
+// create hour label
 clockGroup.selectAll('.hour-label')
    // start, max, inc
-  .data(d3.range(1,25,))
+  .data(d3.range(1, hourLabelRange + 1))
   .enter()
   .append('text')
   .attr('class', 'hour-label')
