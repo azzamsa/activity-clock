@@ -43,8 +43,16 @@ var usedColors = [];
 function generateRandomColor() {
   var randomNum = Math.floor(Math.random() * 20);
   var randomColor = colors[randomNum];
+
+  if (usedColors.includes( randomColor ) ) {
+    if (usedColors.length == colors.length) {
+      usedColors = []; // clear all used colors
+    } else {
+      return generateRandomColor();
+    }
+    console.log('same!');
+  }
   usedColors.push(randomColor);
-  // FIXME don't use the same color
   return randomColor;
 }
 
