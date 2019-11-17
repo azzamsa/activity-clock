@@ -8,8 +8,8 @@ function degToRad(degrees) {
   return degrees * Math.PI / 180;
 }
 
-function clockToRad(clock, direction) {
-  var unit = circleDegree / 24;
+function clockToRad(clock, direction, timeMode) {
+  var unit = circleDegree / timeMode;
   var degree = direction > 0 ? unit * clock : unit * clock - circleDegree;
   return degToRad(degree);
 }
@@ -75,7 +75,9 @@ clockGroup = vis.append("svg:g")
 var legend = d3.select("#legend");
 var svg_cy = 50; // legend y position
 
-function makeClock(activities) {
+function makeClock(activities, timeMode) {
+
+  timeMode = parseInt(timeMode);
 
   for(var i = 0; i < activities.length; i++) {
 
@@ -99,8 +101,8 @@ function makeClock(activities) {
     var arc = d3.svg.arc()
         .innerRadius(0)
         .outerRadius(clockRadius)
-        .startAngle(clockToRad(startTime, startTimeFlag))
-        .endAngle(clockToRad(endTime, endTimeFlag));
+        .startAngle(clockToRad(startTime, startTimeFlag, timeMode))
+        .endAngle(clockToRad(endTime, endTimeFlag, timeMode));
 
     // fill clock
     clockGroup.append('path')
@@ -122,50 +124,61 @@ function makeClock(activities) {
       .style("font-size", "20px")
       .attr("alignment-baseline","middle");
   }
+  drawClock(timeMode);
 }
 
-// draw tick
-clockGroup.append('g')
-  .attr('class', 'ticks')
-  .selectAll('path')
-  .data(splitDegrees(24))
-  .enter()
-  .append('path')
-  .attr('d', function(d) {
-    var coord = {
-      outer: getCoordFromCircle(d, 0, 0, clockRadius),
-      inner: getCoordFromCircle(d, 0, 0, clockRadius - tickLength)
-    };
-    return 'M' + coord.outer[0] + ' ' + coord.outer[1] + 'L' + coord.inner[0] + ' ' + coord.inner[1] + 'Z';
-  })
-  .attr('stroke-width', '0.5%')
-  .attr('stroke', '#212121');
+function drawClock(timeMode){
+
+  // draw tick
+  clockGroup.append('g')
+    .attr('class', 'ticks')
+    .selectAll('path')
+    .data(splitDegrees(timeMode))
+    .enter()
+    .append('path')
+    .attr('d', function(d) {
+      var coord = {
+        outer: getCoordFromCircle(d, 0, 0, clockRadius),
+        inner: getCoordFromCircle(d, 0, 0, clockRadius - tickLength)
+      };
+      return 'M' + coord.outer[0] + ' ' + coord.outer[1] + 'L' + coord.inner[0] + ' ' + coord.inner[1] + 'Z';
+    })
+    .attr('stroke-width', '0.5%')
+    .attr('stroke', '#212121');
 
 
-hourLabelRadius = clockRadius + 20;
-hourLabelYOffset = 7;
-radians = 0.0174532925;
-hourScaleDomain = 22; // 11: for 12 hour / 22: for 24 hour #editable
-hourLabelRange = 24; // 12 / 24 #editable
+  hourLabelRadius = clockRadius + 20;
+  hourLabelYOffset = 7;
+  radians = 0.0174532925;
+  hourScaleDomain = 22; // 11: for 12 hour / 22: for 24 hour #editable
+  hourLabelRange = timeMode; // 12 / 24 #editable
 
-var hourScale = d3.scale.linear()
-    .range([0,330])
-    .domain([0,hourScaleDomain]);
+  if (timeMode == 24){
+    hourScaleDomain = 22;
+  } else {
+    hourScaleDomain = 11;
+  }
 
-// create hour label
-clockGroup.selectAll('.hour-label')
-// start, max, inc
-  .data(d3.range(1, hourLabelRange + 1))
-  .enter()
-  .append('text')
-  .attr('class', 'hour-label')
-  .attr('text-anchor','middle')
-  .attr('x',function(d){
-    return hourLabelRadius*Math.sin(hourScale(d)*radians);
-  })
-  .attr('y',function(d){
-    return -hourLabelRadius*Math.cos(hourScale(d)*radians) + hourLabelYOffset;
-  })
-  .text(function(d){
-    return d;
-  });
+  var hourScale = d3.scale.linear()
+      .range([0,330])
+      .domain([0,hourScaleDomain]);
+
+  // create hour label
+  clockGroup.selectAll('.hour-label')
+  // start, max, inc
+    .data(d3.range(1, hourLabelRange + 1))
+    .enter()
+    .append('text')
+    .attr('class', 'hour-label')
+    .attr('text-anchor','middle')
+    .attr('x',function(d){
+      return hourLabelRadius*Math.sin(hourScale(d)*radians);
+    })
+    .attr('y',function(d){
+      return -hourLabelRadius*Math.cos(hourScale(d)*radians) + hourLabelYOffset;
+    })
+    .text(function(d){
+      return d;
+    });
+
+}

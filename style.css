@@ -200,3 +200,12 @@ ul{
 .personal-details > li:nth-child(even){
   background-color: #FAFEFF;
 }
+
+.settings {
+  margin-top: 60px;
+  margin-bottom: -45px;
+}
+
+.settings p {
+  margin-bottom: 2px;
+}

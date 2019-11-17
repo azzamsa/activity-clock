@@ -62,6 +62,14 @@
 
         <button type="button" class="add-row">+</button>
 
+        <div class="settings">
+          <p>Settings:</p>
+          <select id="timeMode">
+            <option value="24" selected="selected">24 Hour</option>
+            <option value="12">12 Hour</option>
+          </select>
+        </div>
+
         <div class="submit-div">
 	  <ul>
 	    <li>
@@ -106,11 +114,19 @@
         return tmp;
       }
 
+      function getTimeMode(){
+        // FIXME ability to change on the fly
+        var e = document.getElementById("timeMode");
+        var timeMode = e.options[e.selectedIndex].value;
+        return timeMode;
+      }
+
       function makeSearch() {
         var theArray = $('#activities-form').serializeArray();
 
         var activities_ = splitArray(theArray, 4, 4);
-        makeClock(activities_);
+        var timeMode = getTimeMode()
+        makeClock(activities_, timeMode);
 
         return false; // to be able to use console.log
       }
