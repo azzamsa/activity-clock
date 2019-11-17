@@ -81,8 +81,8 @@ function makeClock(activities) {
 
     var activity = activities[i];
 
-    var startTime = activity[0].value;
-    var endTime = activity[1].value;
+    var startTime = parseInt(activity[0].value);
+    var endTime = parseInt(activity[1].value);
     var activityName = activity[2].value;
     var colorTime = activity[3].value;
     var startTimeFlag = 1;
