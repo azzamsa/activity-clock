@@ -168,20 +168,20 @@ input {
   margin-left: 2%;
   margin-right: 2%;
 }
-.personal-details {
+.activity-details {
   padding-bottom:1.25%;
 }
 ul{
   list-style: none;
 }
-.personal-details{
+.activity-details{
   width:100%;
   margin: auto;
   display: flex;
   justify-content: space-between;
 }
 
-.personal-details > li{
+.activity-details > li{
   padding: 20px;
   width: 25%;
   border-top: 1px solid #90C3D4;
@@ -189,15 +189,15 @@ ul{
   border-bottom: 1px solid #90C3D4;
   border-left: 0px solid #90C3D4;
 }
-.personal-details > li:first-child{
+.activity-details > li:first-child{
   padding: 20px;
   width: 25%;
   border-left: 1px solid #90C3D4;
 }
-.personal-details > li:nth-child(odd){
+.activity-details > li:nth-child(odd){
   background-color: #F2FCFF;
 }
-.personal-details > li:nth-child(even){
+.activity-details > li:nth-child(even){
   background-color: #FAFEFF;
 }
 
