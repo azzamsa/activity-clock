@@ -48,7 +48,8 @@ vis = d3.selectAll(".chart")
 clockGroup = vis.append("svg:g")
   .attr("transform", "translate(" + offSetX + "," + offSetY + ")");
 
-var cubes = [
+// # activities section #editable
+var activities = [
   // start, inverse flag, end, inverse flag, color
   [22, -1, 4, 1, '#deb881', 'tidur malam'],
   [4, 1, 5, 1, '#42dee1', 'subuhan'],
@@ -70,19 +71,19 @@ var legend = d3.select("#legend");
 
 var svg_cy = 50; // legend y position
 
-for(var i = 0; i < cubes.length; i++) {
-  var cube = cubes[i];
+for(var i = 0; i < activities.length; i++) {
+  var activity = activities[i];
 
   var arc = d3.svg.arc()
       .innerRadius(0)
       .outerRadius(clockRadius)
-      .startAngle(clockToRad(cube[0], cube[1]))
-      .endAngle(clockToRad(cube[2], cube[3]));
+      .startAngle(clockToRad(activity[0], activity[1]))
+      .endAngle(clockToRad(activity[2], activity[3]));
 
   // fill clock
   clockGroup.append('path')
     .attr('d', arc)
-    .style('fill', cube[4]);
+    .style('fill', activity[4]);
 
   svg_cy = svg_cy + 30;
 
@@ -90,12 +91,12 @@ for(var i = 0; i < cubes.length; i++) {
     .attr("cx",20)
     .attr("cy",svg_cy) // inc
     .attr("r", 10) // circle size
-    .style("fill", cube[4]);
+    .style("fill", activity[4]);
 
   legend.append("text")
     .attr("x", 45)
     .attr("y", svg_cy + 5) //
-    .text(cube[5] + " (" + cube[0] + "⤳" + cube[2] + ") " )
+    .text(activity[5] + " (" + activity[0] + "⤳" + activity[2] + ") " )
     .style("font-size", "20px")
     .attr("alignment-baseline","middle");
 }
