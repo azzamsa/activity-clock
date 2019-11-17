@@ -77,16 +77,22 @@ function makeClock(activities) {
     var endTime = activity[1].value;
     var activityName = activity[2].value;
     var colorTime = activity[3].value;
+    var startTimeFlag = 1;
+    var endTimeFlag = 1;
 
     if (colorTime == ""){
       colorTime = generateRandomColor();
     }
 
+    if (startTime > endTime){
+      startTimeFlag = -1;
+    }
+
     var arc = d3.svg.arc()
         .innerRadius(0)
         .outerRadius(clockRadius)
-        .startAngle(clockToRad(startTime, 1))
-        .endAngle(clockToRad(endTime, 1));
+        .startAngle(clockToRad(startTime, startTimeFlag))
+        .endAngle(clockToRad(endTime, endTimeFlag));
 
     // fill clock
     clockGroup.append('path')
