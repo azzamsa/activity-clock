@@ -164,6 +164,7 @@ label {
 input {
   width: 100%;
 }
+
 .container {
   margin-left: 2%;
   margin-right: 2%;
@@ -201,11 +202,23 @@ ul{
   background-color: #FAFEFF;
 }
 
-.settings {
+.settings-container{
+  display: flex;
   margin-top: 60px;
   margin-bottom: -45px;
 }
 
-.settings p {
-  margin-bottom: 2px;
+.setting-word {
+  margin-right: 10px;
+  text-align: center;
+}
+
+.time-mode-setting {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.activity-title {
+  margin-right: 10px;
+  margin-top: 9px;
 }

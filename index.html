@@ -62,12 +62,22 @@
 
         <button type="button" class="add-row">+</button>
 
-        <div class="settings">
-          <p>Settings:</p>
-          <select id="timeMode">
-            <option value="24" selected="selected">24 Hour</option>
-            <option value="12">12 Hour</option>
-          </select>
+        <div class="settings-container">
+          <div class="setting-word">
+          <p>Settings: </p>
+          </div>
+          <div class="time-mode-setting">
+            <select id="timeMode">
+              <option value="24" selected="selected">24 Hour</option>
+              <option value="12">12 Hour</option>
+            </select>
+          </div>
+          <div class="activity-title">
+            <input id="cusom-activity-title" type="text"
+                   value="Daily Schedule"
+                   placeholder="Daily Schedule"/>
+          </div>
+
         </div>
 
         <div class="submit-div">
@@ -82,7 +92,7 @@
     </div>
 
     <div class="title">
-      <h2>Daily Schedule</h2>
+      <h2 id="activity-clock-title">Daily Schedule</h2>
     </div>
     <div class="container">
       <div class="chart"></div>
@@ -121,9 +131,17 @@
         return timeMode;
       }
 
-      function makeActivityClock() {
-        var activities = $('#activities-form').serializeArray();
+      function updateActivityClockTitle(){
+        var customTitle = $("#cusom-activity-title").val();
+        $( "#activity-clock-title" )
+          .replaceWith( "<h2 id='activity-clock-title'>" + customTitle + "</h2>" );
+      }
 
+      function makeActivityClock() {
+        updateActivityClockTitle();
+
+
+        var activities = $('#activities-form').serializeArray();
         var activities_ = splitArray(activities, 4, 4);
         var timeMode = getTimeMode()
         makeClock(activities_, timeMode);
