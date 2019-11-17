@@ -114,10 +114,37 @@ clockGroup.append('g')
   .attr('stroke', '#212121');
 
 
+clockRadius = 95;
+hourLabelRadius = clockRadius - 2;
+hourLabelYOffset = 7;
+radians = 0.0174532925;
+
+var hourScale = d3.scale.linear()
+    .range([0,330])
+    .domain([0,22]);
+
+// TODO create hour label
+clockGroup.selectAll('.hour-label')
+   // start, max, inc
+  .data(d3.range(1,25,))
+  .enter()
+  .append('text')
+  .attr('class', 'hour-label')
+  .attr('text-anchor','middle')
+  .attr('x',function(d){
+    return hourLabelRadius*Math.sin(hourScale(d)*radians);
+  })
+  .attr('y',function(d){
+    return -hourLabelRadius*Math.cos(hourScale(d)*radians) + hourLabelYOffset;
+  })
+  .text(function(d){
+    return d;
+  });
+
+
+
 // credits
 // https://www.d3-graph-gallery.com/graph/custom_legend.html
 // https://stackoverflow.com/questions/38155793/d3-js-pie-chart-clock
 // https://colorhunt.co/palette/156488
-
-// TODO
-// 1) tick label
+// http://bl.ocks.org/tomgp/6475678
