@@ -82,6 +82,8 @@ function makeClock(activities, timeMode) {
   var legend_cy = 50; // legend y position
   timeMode = parseInt(timeMode);
 
+  var activityColor = {};
+
   for(var i = 0; i < activities.length; i++) {
 
     var activity = activities[i];
@@ -94,7 +96,14 @@ function makeClock(activities, timeMode) {
     var endTimeFlag = 1;
 
     if (colorTime == ""){
-      colorTime = generateRandomColor();
+      // use the same color for the same activity
+      var isColorAssociated = activityColor[activityName];
+      if ( isColorAssociated === undefined ){
+        colorTime = generateRandomColor();
+        activityColor[activityName] = colorTime;
+      } else {
+        colorTime = activityColor[activityName];
+      }
     }
 
     if (startTime > endTime){
