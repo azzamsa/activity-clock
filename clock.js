@@ -36,7 +36,8 @@ function splitDegrees(num) {
 
 var colors = ['#36b5b0', '#9dd8c8', '#f09595', '#fcf5b0', '#f4efd3', '#cccccc', '#9656a1',
               '#ff9d76', '#51eaea', '#c3f0ca', '#ffc0ad', '#6decb9', '#ffad87', '#e3b04b',
-              '#f1d6ab', '#df42d1', '#eadea6', '#494ca2', '#c6cbef', '#f66767', '#c0ffb3'];
+              '#f1d6ab', '#df42d1', '#eadea6', '#494ca2', '#c6cbef', '#f66767', '#c0ffb3',
+              '#233567', '#eeeeee', '#b030b0', '#fb9224', '#ff78ae', '#7c0a02', '#b22222'];
 
 
 var usedColors = [];
