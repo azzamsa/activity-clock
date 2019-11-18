@@ -95,7 +95,9 @@
       <h2 id="activity-clock-title"></h2>
     </div>
     <div class="container">
-      <div class="chart"></div>
+      <div class="chart">
+        <svg id="clock"></svg>
+      </div>
       <div class="legend">
         <svg id="legend" height=500 width=350></svg>
       </div>
@@ -139,6 +141,7 @@
       }
       function resetDrawings(){
         $("#legend").empty();
+        $("#clock").empty();
       }
 
       function makeActivityClock() {

@@ -63,18 +63,21 @@ offSetX = clockRadius + 50; // clock svg offset location #editable
 offSetY = clockRadius + 70; // clock svg offset location #editable
 pi = Math.PI;
 
-vis = d3.selectAll(".chart")
-  .append("svg:svg")
+vis = d3.select("#clock")
   .attr("width", width)
   .attr("height", height);
 
-clockGroup = vis.append("svg:g")
-  .attr("transform", "translate(" + offSetX + "," + offSetY + ")");
-
-
 var legend = d3.select("#legend");
 
+function initializeClock(){
+  clockGroup = vis.append("svg:g")
+    .attr("transform", "translate(" + offSetX + "," + offSetY + ")");
+}
+
+
 function makeClock(activities, timeMode) {
+
+  initializeClock();
 
   var legend_cy = 50; // legend y position
   timeMode = parseInt(timeMode);
