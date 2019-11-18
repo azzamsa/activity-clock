@@ -73,10 +73,10 @@ clockGroup = vis.append("svg:g")
 
 
 var legend = d3.select("#legend");
-var svg_cy = 50; // legend y position
 
 function makeClock(activities, timeMode) {
 
+  var legend_cy = 50; // legend y position
   timeMode = parseInt(timeMode);
 
   for(var i = 0; i < activities.length; i++) {
@@ -109,17 +109,17 @@ function makeClock(activities, timeMode) {
       .attr('d', arc)
       .style('fill', colorTime);
 
-    svg_cy = svg_cy + 30;
+    legend_cy = legend_cy + 30;
 
     legend.append("circle")
       .attr("cx",20)
-      .attr("cy",svg_cy) // inc
+      .attr("cy",legend_cy) // inc
       .attr("r", 10) // circle size
       .style("fill", colorTime);
 
     legend.append("text")
       .attr("x", 45)
-      .attr("y", svg_cy + 5) //
+      .attr("y", legend_cy + 5) //
       .text(activityName + " (" + startTime + "➜" + endTime + ") " )
       .style("font-size", "20px")
       .attr("alignment-baseline","middle");

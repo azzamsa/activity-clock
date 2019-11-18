@@ -97,7 +97,8 @@
     <div class="container">
       <div class="chart"></div>
       <div class="legend">
-        <svg id="legend" height=500 width=350></svg></div>
+        <svg id="legend" height=500 width=350></svg>
+      </div>
     </div>
 
     <script src="clock.js"></script>
@@ -136,8 +137,12 @@
         $( "#activity-clock-title" )
           .replaceWith( "<h2 id='activity-clock-title'>" + customTitle + "</h2>" );
       }
+      function resetDrawings(){
+        $("#legend").empty();
+      }
 
       function makeActivityClock() {
+        resetDrawings();
         updateActivityClockTitle();
 
 
