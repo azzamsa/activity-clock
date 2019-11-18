@@ -1,4 +1,5 @@
-var clockGroup, fields, formatHour, formatMinute, formatSecond, height, offSetX, offSetY, pi, render, scaleHours, scaleSecsMins, vis, width;
+var clockGroup, fields, formatHour, formatMinute, formatSecond, height, offSetX,
+    offSetY, pi, render, scaleHours, scaleSecsMins, vis, width;
 
 var clockRadius = 180; // clock SVG Size #editable
 var tickLength = 13;
